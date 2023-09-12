@@ -1,19 +1,17 @@
 package TP2;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Empresa {
-
     private String razonSocial;
-
     private int cuit;
-
-    private ArrayList<Empleado> empleados;
-
-    public Empresa(String razonSocial, int cuit, ArrayList<Empleado> empleados) {
-        this.razonSocial = razonSocial;
+    public static ArrayList<Empleado> empleados;
+    
+    public Empresa(String razonSocial, int cuit){
+        this.razonSocial= razonSocial;
         this.cuit = cuit;
-        this.empleados = empleados;
+        this.empleados = new ArrayList<Empleado>();
     }
 
     public String getRazonSocial() {
@@ -39,19 +37,44 @@ public class Empresa {
     public void setEmpleados(ArrayList<Empleado> empleados) {
         this.empleados = empleados;
     }
-
-
-
-    public void agregarEmpleado(Empleado e) {
-    }
-
-
-    public void mostrarEmpleados() {
-    }
+    
+    
+     public void agregarEmpleado(Empleado e){
+      this.empleados.add(e);
+   }
+     private void mostrarEmpleado(){
+         for(Empleado emp: empleados ){
+             System.out.println(emp);
+         }
+     }
 
     @Override
     public String toString() {
-        return "Empresa{" + "razonSocial=" + razonSocial + ", cuit=" + cuit + ", empleados=" + empleados + '}';
+        return razonSocial;
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Empresa other = (Empresa) obj;
+        if (!Objects.equals(this.razonSocial, other.razonSocial)) {
+            return false;
+        }
+        return true;
+    }
+
 }
